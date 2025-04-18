@@ -25,6 +25,11 @@
 							<li class="header__nav-item">
 								<a href="{{ Auth::check() ? route('user.about') : route('about') }}" class="header__nav-link">About us</a>
 							</li>
+
+							<!-- Contact -->
+							<li class="header__nav-item">
+								<a href="{{ Auth::check() ? route('user.contact') : route('contact') }}" class="header__nav-link" >Contact</a>
+							</li>
 						</ul>
 						
 						<!-- end header nav -->

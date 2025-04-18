@@ -26,6 +26,12 @@ class Film extends Model
         return $this->BelongsTo(genre::class, 'id_genre');
     }
 
+    public function favoritedBy()
+{
+    return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+}
+
+
     public function deleteImage()
     {
         if ($this->cover && file_exists(public_path('images/film' . $this->cover))) {

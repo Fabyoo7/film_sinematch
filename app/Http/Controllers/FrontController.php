@@ -17,7 +17,11 @@ class FrontController extends Controller
     {
         $film   = Film::findOrFail($id);
         $review = $film->review()->latest()->get();
-        return view('detail', compact('film', 'review'));
+
+        $film_utama   = Film::with(['kategori', 'genre'])->findOrFail($id);
+        $film_lainnya = Film::with(['kategori', 'genre'])->where('id', '!=', $id)->get();
+
+        return view('detail', compact('film', 'review', 'film_utama', 'film_lainnya'));
     }
 
     public function profile()
@@ -29,6 +33,15 @@ class FrontController extends Controller
      public function about()
     {
         return view('about');
+    }
+     public function contact()
+    {
+        return view('contact');
+    }
+
+    public function privacy()
+    {
+        return view('privacy');
     }
 
      public function catalog()

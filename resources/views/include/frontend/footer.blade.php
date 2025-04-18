@@ -10,9 +10,9 @@
 						<span class="footer__copyright">© SINEMATCH, 2022—2025 <br> Create by <a href="https://themeforest.net/user/dmitryvolkov/portfolio" target="_blank">Fabio Naufal</a></span>
 
 						<nav class="footer__nav">
-							<a href="{{ route('about') }}">About Us</a>
-							<a href="contacts.html">Contacts</a>
-							<a href="privacy.html">Privacy policy</a>
+							<a href="{{ Auth::check() ? route('user.about') : route('about') }}">About Us</a>
+							<a href="{{ Auth::check() ? route('user.contact') : route('contact') }}">Contacts</a>
+							<a href="{{ Auth::check() ? route('user.privacy') : route('privacy') }}">Privacy policy</a>
 						</nav>
 
 						<button class="footer__back" type="button">

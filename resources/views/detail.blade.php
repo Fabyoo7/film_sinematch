@@ -188,27 +188,28 @@
                         <!-- end section title -->
 
                         <!-- item -->
-                        <div class="col-6 col-sm-4 col-lg-6">
-
-                            <div class="item">
-                                <div class="item__cover">
-                                    <img src="{{ asset('images/film/' . $film->poster)}}" alt="">
-                                    <a href="{{ url('detail', $film->id) }}" class="item__play">
-                                        <i class="ti ti-player-play-filled"></i>
-                                    </a>
-                                    <span class="item__rate item__rate--green">8.4</span>
-                                    <button class="item__favorite" type="button"><i class="ti ti-bookmark"></i></button>
-                                </div>
-                                <div class="item__content">
-                                    <h3 class="item__title"><a href="{{ url('detail', $film->id) }}">{{ $film->judul }}</a></h3>
-                                    <span class="item__category">
-                                        <a href="#">{{ $film->kategori->nama_kategori}}</a>
-                                        <a href="#">{{ $film->genre->nama_genre}}</a>
-                                    </span>
+                        @foreach($film_lainnya as $item)
+                            <div class="col-6 col-sm-4 col-lg-6">
+                                <div class="item">
+                                    <div class="item__cover">
+                                        <img src="{{ asset('images/film/' . $item->poster)}}" alt="">
+                                        <a href="{{ url('detail', $item->id) }}" class="item__play">
+                                            <i class="ti ti-player-play-filled"></i>
+                                        </a>
+                                        <span class="item__rate item__rate--green">8.4</span>
+                                        <button class="item__favorite" type="button"><i class="ti ti-bookmark"></i></button>
+                                    </div>
+                                    <div class="item__content">
+                                        <h3 class="item__title"><a href="{{ url('detail', $item->id) }}">{{ $item->judul }}</a></h3>
+                                        <span class="item__category">
+                                            <a href="#">{{ $item->kategori->nama_kategori}}</a>
+                                            <a href="#">{{ $item->genre->nama_genre}}</a>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                            
-                        </div>
+                        @endforeach
+
                         <!-- end item -->
                     </div>
                 </div>
@@ -219,31 +220,7 @@
     <!-- end content -->
 
     <!-- footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="footer__content">
-                        <a href="index.html" class="footer__logo">
-                            <img src="img/logo.svg" alt="">
-                        </a>
-
-                        <span class="footer__copyright">© HOTFLIX, 2019—2024 <br> Create by <a href="https://themeforest.net/user/dmitryvolkov/portfolio" target="_blank">Dmitry Volkov</a></span>
-
-                        <nav class="footer__nav">
-                            <a href="about.html">About Us</a>
-                            <a href="contacts.html">Contacts</a>
-                            <a href="privacy.html">Privacy policy</a>
-                        </nav>
-
-                        <button class="footer__back" type="button">
-                            <i class="ti ti-arrow-narrow-up"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+   @include('include.frontend.footer')
     <!-- end footer -->
 
     <!-- Root element of PhotoSwipe. Must have class pswp. -->

@@ -68,7 +68,10 @@
 												</a>
 
 												<span class="item__rate item__rate--green">8.4</span>
-												<button class="item__favorite" type="button"><i class="ti ti-bookmark"></i></button>
+												<button class="item__favorite" type="button" onclick="toggleFavorite({{ $item->id }}, this)">
+														<i class="ti ti-bookmark"></i>
+												</button>
+
 											</div>
 
 											<div class="item__content">
@@ -143,7 +146,10 @@
 										<i class="ti ti-player-play-filled"></i>
 									</a>
 									<span class="item__rate item__rate--green">7.1</span>
-									<button class="item__favorite" type="button"><i class="ti ti-bookmark"></i></button>
+									<button class="item__favorite" type="button" onclick="toggleFavorite({{ $item->id }}, this)">
+										<i class="ti ti-bookmark"></i>
+									</button>
+
 								</div>
 								<div class="item__content">
 									<h3 class="item__title"><a href="{{ url('detail', $item -> id ) }}">{{ $item->judul }}</a></h3>
@@ -155,6 +161,12 @@
 							</div>
 						</div>
 						@endforeach
+						@if (session('success'))
+						<div class="alert alert-success">
+							{{ session('success') }}
+						</div>
+					@endif
+
 					
 						<!-- end item -->
 					</div>
@@ -194,6 +206,27 @@
 	<!-- footer -->
 	@include('include.frontend.footer')
 	<!-- end footer -->
+
+	<script>
+    function toggleFavorite(filmId, btn) {
+        fetch(`/favorite/${filmId}`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Accept': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === 'added') {
+                btn.classList.add('item__favorite--active');
+            } else {
+                btn.classList.remove('item__favorite--active');
+            }
+        })
+        .catch(err => console.error('Favorite toggle error:', err));
+    }
+</script>
 
 	
 

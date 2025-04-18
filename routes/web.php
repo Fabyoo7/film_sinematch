@@ -33,6 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
 
+
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register'])->name('register');
@@ -47,6 +48,8 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
     Route::get('/profile', [FrontController::class, 'profile'])->name('user.profile');
     Route::get('/about', [FrontController::class, 'about'])->name('user.about');
     Route::get('/catalog', [FrontController::class, 'catalog'])->name('user.catalog');
+    Route::get('/contact', [FrontController::class, 'contact'])->name('user.contact');
+    Route::get('/privacy', [FrontController::class, 'privacy'])->name('user.privacy');
     Route::post('/detail/{id}/review', [FrontController::class, 'storeReview'])->name('review.store');
     Route::get('/detail/{id}', [FrontController::class, 'show'])->name('detail.show');
 });
@@ -54,6 +57,10 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
 Route::get('/about', [FrontController::class, 'about'])->name('about');
 Route::get('/catalog', [FrontController::class, 'catalog'])->name('catalog');
 Route::get('/detail/{id}', [FrontController::class, 'show'])->name('detail.show');
+Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
+Route::get('/privacy', [FrontController::class, 'privacy'])->name('privacy');
+
+Route::post('/favorite/{film}', [App\Http\Controllers\FavoriteController::class, 'toggle'])->middleware('auth')->name('favorite.toggle');
 
 
 
