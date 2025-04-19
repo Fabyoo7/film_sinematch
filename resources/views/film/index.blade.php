@@ -78,7 +78,6 @@
 									<th>KATEGORI</th>
 									<th>GENRE</th>
 									<th>AKTOR</th>
-									<th>RATING</th>
 									<th>TAHUN RILIS</th>
 									<th>ACTIONS</th>
 								</tr>
@@ -103,9 +102,6 @@
 										<div class="catalog__text">{{ $data->aktor }}</div>
 									</td>
 									<td>
-										<div class="catalog__text">{{ $data->rating }}</div>
-									</td>
-									<td>
 										<div class="catalog__text">{{ $data->tahun_rilis }}</div>
 									</td>
 									<td>
@@ -114,7 +110,7 @@
                                              @csrf
                                              @method('DELETE')
 										<div class="catalog__btns">
-											<a href="#" class="catalog__btn catalog__btn--view">
+											<a href="{{ route('film.show', $data->id) 	}}" class="catalog__btn catalog__btn--view">
 												<i class="ti ti-eye"></i>
 											</a>
 											<a href="{{ route('film.edit', $data->id) }}" class="catalog__btn catalog__btn--edit">

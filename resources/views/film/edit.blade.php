@@ -155,8 +155,9 @@
 							    	<input type="text" class="sign__input" id="" name="trailer" value="{{ $film->trailer }}" required>
 								</div>
 							</div>
-							<div class="col-12">
+							<div class="col-12  d-flex justify-content gap-2">
 								<button type="submit" class="sign__btn sign__btn--small">Publish</button>
+								<a href="{{ url('admin/film') }}" class="sign__btn sign__btn--small">Back</a>
 							</div>
 						</div>
 					</form>

@@ -77,7 +77,7 @@ class ReviewController extends Controller
         $review->save();
         toast('New review has been saved', 'success');
 
-        return redirect()->route('review.index');
+        return redirect()->route('detail.show', $request->id_film);
     }
 
     /**

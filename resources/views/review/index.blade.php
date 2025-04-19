@@ -56,13 +56,7 @@
 				<!-- main title -->
 				<div class="col-12">
 					<div class="main__title">
-						<h2>KATEGORI</h2>
-
-						
-
-						<div class="main__title-wrap">
-							<a href="{{ route('review.create') }}" class="main__title-link main__title-link--wrap">Add Kategori	</a>
-						</div>
+						<h2>REVIEW</h2>
 					</div>
 				</div>
 				<!-- end main title -->
@@ -94,28 +88,11 @@
 										<div class="catalog__text">{{ $data->user->name }}</div>
 									</td>
                                     <td>
-										<div class="catalog__text">{{ $data->rating}}</div>
+										<div class="catalog__text">{{ $data->rating }}</div>
 									</td>
                                     <td>
-                                        <div class="catalog__text">{{ $data->komen}}</div>
+                                        <div class="catalog__text">{{ $data->komen }}</div>
 									<td>
-                                         <form action="{{ route('review.destroy', $data->id) }}"
-                                             method="POST">
-                                             @csrf
-                                             @method('DELETE')
-										<div class="catalog__btns">
-											<a href="#" class="catalog__btn catalog__btn--view">
-												<i class="ti ti-eye"></i>
-											</a>
-											<a href="{{ route('review.edit', $data->id) }}" class="catalog__btn catalog__btn--edit">
-												<i class="ti ti-edit"></i>
-											</a>
-											<button type="submit" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete" data-bs-target="#modal-delete">
-												<i class="ti ti-trash"></i>
-											</button>
-										</div>
-									</td>
-                                     </form>
 								</tr>
 								 @endforeach
 							</tbody>

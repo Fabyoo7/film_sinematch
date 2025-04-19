@@ -216,7 +216,7 @@
 			<div class="row">
 				<!-- more -->
 				<div class="col-12">
-					<a class="section__more" href="{{ route('catalog')}}">View all</a>
+					<a class="section__more" href="{{ Auth::check() ? route('user.catalog') : route('catalog') }}">View all</a>
 				</div>
 				<!-- end more -->
 			</div>

@@ -48,12 +48,6 @@
 				<li class="sidebar__nav-item">
 					<a href="{{ route('film.index') }}" class="sidebar__nav-link"><i class="ti ti-movie"></i> <span>FILM</span></a>
 				</li>
-
-				<!-- dropdown -->
-				<!-- end dropdown -->
-				<li class="sidebar__nav-item">
-					<a href="/" class="sidebar__nav-link"><i class="ti ti-arrow-left"></i> <span>Back to HotFlix</span></a>
-				</li>
 			</ul>
 		</div>
 		<!-- end sidebar nav -->

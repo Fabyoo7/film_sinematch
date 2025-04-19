@@ -149,36 +149,38 @@
                                         </ul>
 
                                         <!-- form komentar -->
-                                       <form action="{{ route('review.store') }}" class="sign__form sign__form--comments" method="post"
-                                        role="form" enctype="multipart/form-data">>
-                                        @csrf
-											<div class="sign__group">
-												<input type="text" class="sign__input" value="{{ $film->judul }}"></input>
-											</div>
-                                            
+                                       <form action="{{ route('review.store') }}" class="sign__form sign__form--comments" method="POST"
+                                        role="form" enctype="multipart/form-data">
+                                            @csrf
+                                        @auth
+                                            <form action="{{ route('review.store') }}" class="sign__form sign__form--comments" method="POST" role="form" enctype="multipart/form-data">
+                                                @csrf
 
-											<div class="sign__group">
-												<select class="sign__select" name="rating" id="rating">
-													<option value="0">Rating</option>
-													<option value="1">1 star</option>
-													<option value="2">2 stars</option>
-													<option value="3">3 stars</option>
-													<option value="4">4 stars</option>
-													<option value="5">5 stars</option>
-													<option value="6">6 stars</option>
-													<option value="7">7 stars</option>
-													<option value="8">8 stars</option>
-													<option value="9">9 stars</option>
-													<option value="10">10 stars</option>
-												</select>
-											</div>
+                                                <input type="hidden" name="id_user" id="id_user" value="{{ auth()->user()->id }}">
+                                                <input type="hidden" name="id_film" value="{{ $film->id }}">
 
-											<div class="sign__group">
-												<textarea id="komen" name="komen" class="sign__textarea" placeholder="Add review"></textarea>
-											</div>
+                                                <div class="sign__group">
+                                                    <select class="sign__select" name="rating" id="rating">
+                                                        <option value="0">Rating</option>
+                                                        @for ($i = 1; $i <= 10; $i++)
+                                                            <option value="{{ $i }}">{{ $i }} star{{ $i > 1 ? 's' : '' }}</option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
 
-											<button type="submit" class="sign__btn sign__btn--small">Send</button>
-										</form>
+                                                <div class="sign__group">
+                                                    <textarea id="komen" name="komen" class="sign__textarea" placeholder="Add review"></textarea>
+                                                </div>
+
+                                                <button type="submit" class="sign__btn sign__btn--small">Send</button>
+                                            </form>
+                                        @else
+                                            <p class="text-white">
+                                                Silakan <a href="{{ route('login') }}" class="text-warning text-decoration-underline">login</a> untuk memberikan Review dan Rating.
+                                            </p>
+                                        @endauth
+
+                                        </form> 
                                         <!-- end form komentar -->
                                     </div>
                                 </div>

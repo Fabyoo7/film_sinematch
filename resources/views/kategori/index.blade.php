@@ -94,9 +94,6 @@
                                              @csrf
                                              @method('DELETE')
 										<div class="catalog__btns">
-											<a href="#" class="catalog__btn catalog__btn--view">
-												<i class="ti ti-eye"></i>
-											</a>
 											<a href="{{ route('kategori.edit', $data->id) }}" class="catalog__btn catalog__btn--edit">
 												<i class="ti ti-edit"></i>
 											</a>
