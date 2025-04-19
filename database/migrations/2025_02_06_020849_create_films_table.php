@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longtext('sipnosis');
             $table->date('tahun_rilis');
             $table->string('waktu');
+            $table->string('rating');
             $table->string('poster');
             $table->string('trailer');
             $table->timestamps();

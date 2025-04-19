@@ -66,8 +66,18 @@
 												<a href="{{ Auth::check() ? url('user/detail', $item->id) : url('detail', $item->id) }}" class="item__play">
 													<i class="ti ti-player-play-filled"></i>
 												</a>
+												 @php
+													$rating = $item->rating;
+													$ratingClass = 'item__rate--red';
 
-												<span class="item__rate item__rate--green">8.4</span>
+													if ($rating >= 8) {
+														$ratingClass = 'item__rate--green';
+													} elseif ($rating >= 7) {
+														$ratingClass = 'item__rate--yellow';
+													}
+												@endphp
+
+												<span class="item__rate {{ $ratingClass }}">{{ $rating }}</span>
 												<button class="item__favorite" type="button" onclick="toggleFavorite({{ $item->id }}, this)">
 														<i class="ti ti-bookmark"></i>
 												</button>
@@ -145,7 +155,18 @@
 									<a href="{{ url('detail', $item -> id ) }}" class="item__play">
 										<i class="ti ti-player-play-filled"></i>
 									</a>
-									<span class="item__rate item__rate--green">7.1</span>
+									@php
+                                        $rating = $item->rating;
+                                        $ratingClass = 'item__rate--red';
+
+                                        if ($rating >= 8) {
+                                            $ratingClass = 'item__rate--green';
+                                        } elseif ($rating >= 7) {
+                                            $ratingClass = 'item__rate--yellow';
+                                        }
+                                    @endphp
+
+                                    <span class="item__rate {{ $ratingClass }}">{{ $rating }}</span>
 									<button class="item__favorite" type="button" onclick="toggleFavorite({{ $item->id }}, this)">
 										<i class="ti ti-bookmark"></i>
 									</button>

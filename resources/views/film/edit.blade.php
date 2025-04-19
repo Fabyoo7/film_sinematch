@@ -125,6 +125,12 @@
 											<input type="text" class="sign__input" id="" name="aktor" value="{{ $film->aktor }}" required>
 										</div>
 									</div>
+
+									<div class="col-12 ">
+										<div class="sign__group">
+											<input type="text" class="sign__input" id="" name="rating" value="{{ $film->rating }}" required>
+										</div>
+									</div>
                                     
                                     <div class="col-12">
 										<div class="sign__group">

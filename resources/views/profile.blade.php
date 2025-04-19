@@ -192,8 +192,18 @@
 										<a href="{{ url('detail', $film->id) }}" class="item__play">
 											<i class="ti ti-player-play-filled"></i>
 										</a>
-										<span class="item__rate item__rate--green">7.1</span>
-										<button class="item__favorite item__favorite--active" type="button" onclick="toggleFavorite({{ $film->id }}, this)">
+										@php
+                                        $rating = $film->rating;
+                                        $ratingClass = 'item__rate--red';
+
+                                        if ($rating >= 8) {
+                                            $ratingClass = 'item__rate--green';
+                                        } elseif ($rating >= 7) {
+                                            $ratingClass = 'item__rate--yellow';
+                                        }
+                                    @endphp
+
+                                    <span class="item__rate {{ $ratingClass }}">{{ $rating }}</span>										<button class="item__favorite item__favorite--active" type="button" onclick="toggleFavorite({{ $film->id }}, this)">
 											<i class="ti ti-bookmark"></i>
 										</button>
 									</div>

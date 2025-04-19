@@ -132,6 +132,12 @@
 											<input type="text" class="sign__input" id="aktor" name="aktor" placeholder="AKTOR">
 										</div>
 									</div>
+
+									<div class="col-12 ">
+										<div class="sign__group">
+											<input type="text" class="sign__input" id="rating" name="rating" placeholder="RATING">
+										</div>
+									</div>
                                     
                                     <div class="col-12">
 										<div class="sign__group">
@@ -172,79 +178,80 @@
 	</main>
 	<!-- end main content -->
 	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			document.getElementById('btnSearchTMDB').addEventListener('click', function () {
-				console.log("Button clicked");
+	document.addEventListener("DOMContentLoaded", function () {
+		document.getElementById('btnSearchTMDB').addEventListener('click', function () {
+			console.log("Button clicked");
 
-				const query = document.getElementById('searchTitle').value;
-				const apiKey = 'baaa37583292e10f8694ea5ad6323027';
+			const query = document.getElementById('searchTitle').value;
+			const apiKey = 'baaa37583292e10f8694ea5ad6323027';
 
-				fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`)
-					.then(res => res.json())
-					.then(data => {
-						console.log(data);
+			fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`)
+				.then(res => res.json())
+				.then(data => {
+					console.log(data);
 
-						if (data.results.length > 0) {
-							const movie = data.results[0];
-							console.log("movie.poster_path:", movie.poster_path);
+					if (data.results.length > 0) {
+						const movie = data.results[0];
+						console.log("movie.poster_path:", movie.poster_path);
 
-							// Isi input judul dan sipnosis
-							document.getElementById('judul').value = movie.title || '';
-							document.getElementById('sipnosis').value = movie.overview || '';
-							document.getElementById('tahun_rilis').value = movie.release_date || '';
+						// Isi input judul, sipnosis, tahun rilis, dan rating
+						document.getElementById('judul').value = movie.title || '';
+						document.getElementById('sipnosis').value = movie.overview || '';
+						document.getElementById('tahun_rilis').value = movie.release_date || '';
+						document.getElementById('rating').value = movie.vote_average?.toFixed(1) || ''; // ← Tambahan Rating
 
-							// Ambil poster path dan buat URL
-							if (movie.poster_path) {
-								const fullPosterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-								console.log("Poster URL:", fullPosterUrl);
+						// Ambil poster path dan buat URL
+						if (movie.poster_path) {
+							const fullPosterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+							console.log("Poster URL:", fullPosterUrl);
 
-								// Tampilkan preview poster
-								const posterEl = document.getElementById('poster_preview');
-								if (posterEl) {
-									console.log("Poster El:", posterEl);
-									posterEl.src = fullPosterUrl;
-									posterEl.style.display = 'block';
-								}
-
-								// Simpan URL ke input tersembunyi
-								const posterInput = document.getElementById('poster_url');
-								if (posterInput) {
-									console.log("Poster Input:", posterInput);
-									posterInput.value = fullPosterUrl;
-								}
-							} else {
-								console.log("Poster path kosong");
+							// Tampilkan preview poster
+							const posterEl = document.getElementById('poster_preview');
+							if (posterEl) {
+								console.log("Poster El:", posterEl);
+								posterEl.src = fullPosterUrl;
+								posterEl.style.display = 'block';
 							}
 
-							// Fetch detail movie: runtime, credits, videos
-							fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}&append_to_response=videos,credits`)
-								.then(res => res.json())
-								.then(detail => {
-									console.log(detail);
-
-									// Waktu tayang / durasi
-									document.getElementById('waktu').value = detail.runtime ? detail.runtime + " menit" : '';
-
-									// Aktor
-									const cast = detail.credits.cast.slice(0, 3).map(a => a.name).join(', ');
-									document.getElementById('aktor').value = cast || '';
-
-									// Trailer YouTube
-									const trailer = detail.videos.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
-									if (trailer) {
-										document.getElementById('trailer').value = `https://www.youtube.com/watch?v=${trailer.key}`;
-									}
-								});
+							// Simpan URL ke input tersembunyi
+							const posterInput = document.getElementById('poster_url');
+							if (posterInput) {
+								console.log("Poster Input:", posterInput);
+								posterInput.value = fullPosterUrl;
+							}
 						} else {
-							alert('Film tidak ditemukan.');
+							console.log("Poster path kosong");
 						}
-					})
-					.catch(err => {
-						console.error('Error fetching from TMDB:', err);
-						alert('Gagal mengambil data dari TMDB.');
-					});
-			});
+
+						// Fetch detail movie: runtime, credits, videos
+						fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}&append_to_response=videos,credits`)
+							.then(res => res.json())
+							.then(detail => {
+								console.log(detail);
+
+								// Waktu tayang / durasi
+								document.getElementById('waktu').value = detail.runtime ? detail.runtime + " menit" : '';
+
+								// Aktor
+								const cast = detail.credits.cast.slice(0, 3).map(a => a.name).join(', ');
+								document.getElementById('aktor').value = cast || '';
+
+								// Trailer YouTube
+								const trailer = detail.videos.results.find(v => v.type === 'Trailer' && v.site === 'YouTube');
+								if (trailer) {
+									document.getElementById('trailer').value = `https://www.youtube.com/watch?v=${trailer.key}`;
+								}
+							});
+					} else {
+						alert('Film tidak ditemukan.');
+					}
+				})
+				.catch(err => {
+					console.error('Error fetching from TMDB:', err);
+					alert('Gagal mengambil data dari TMDB.');
+				});
 		});
+	});
 </script>
 
 

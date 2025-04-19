@@ -71,6 +71,7 @@ class FilmController extends Controller
             'sipnosis'    => 'required',
             'tahun_rilis' => 'required',
             'waktu'       => 'required',
+            'rating'      => 'required',
             'poster'      => 'required|max:5400|mimes:png,jpg,webp',
             'trailer'     => 'required',
         ]);
@@ -83,6 +84,8 @@ class FilmController extends Controller
         $film->sipnosis    = $request->sipnosis;
         $film->tahun_rilis = $request->tahun_rilis;
         $film->waktu       = $request->waktu;
+        $film->rating      = $request->rating;
+
 
         if ($request->hasFile('poster')) {
             $img  = $request->file('poster');
@@ -146,6 +149,7 @@ class FilmController extends Controller
             'sipnosis'    => 'required',
             'tahun_rilis' => 'required',
             'waktu'       => 'required',
+            'rating'      => 'required',
             'poster'      => 'required|max:5400|mimes:png,jpg,webp',
             'trailer'     => 'required',
         ]);
@@ -157,6 +161,8 @@ class FilmController extends Controller
         $film->sipnosis    = $request->sipnosis;
         $film->tahun_rilis = $request->tahun_rilis;
         $film->waktu       = $request->waktu;
+        $film->rating      = $request->rating     ;
+
 
         if ($request->hasFile('poster')) {
             $img  = $request->file('poster');

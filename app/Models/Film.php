@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Film extends Model
 {
-    protected $fillable = ['judul', 'id_kategori', 'id_genre', 'aktor', 'sipnosis', 'tahun_rilis', 'waktu', 'poster', 'trailer'];
+    protected $fillable = ['judul', 'id_kategori', 'id_genre', 'aktor', 'sipnosis', 'tahun_rilis', 'waktu','rating', 'poster', 'trailer'];
     public $timestamps  = true;
 
     use HasFactory;

@@ -78,6 +78,7 @@
 									<th>KATEGORI</th>
 									<th>GENRE</th>
 									<th>AKTOR</th>
+									<th>RATING</th>
 									<th>TAHUN RILIS</th>
 									<th>ACTIONS</th>
 								</tr>
@@ -100,6 +101,9 @@
 									</td>
 									<td>
 										<div class="catalog__text">{{ $data->aktor }}</div>
+									</td>
+									<td>
+										<div class="catalog__text">{{ $data->rating }}</div>
 									</td>
 									<td>
 										<div class="catalog__text">{{ $data->tahun_rilis }}</div>
