@@ -201,7 +201,7 @@
                         <!-- end section title -->
 
                         <!-- item -->
-                        @foreach($film_lainnya as $item)
+                        @foreach($film_lainnya->sortByDesc('created_at')->take(6) as $item)
                             <div class="col-6 col-sm-4 col-lg-6">
                                 <div class="item">
                                     <div class="item__cover">

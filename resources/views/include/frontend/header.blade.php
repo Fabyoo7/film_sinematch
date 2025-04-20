@@ -36,15 +36,23 @@
 
 						<!-- header auth -->
 						<div class="header__auth">
-							<form action="#" class="header__search">
-								<input class="header__search-input" type="text" placeholder="Search...">
-								<button class="header__search-button" type="button">
+							<form action="{{ route('search.film') }}" method="GET" class="header__search">
+								<input 
+									class="header__search-input" 
+									type="text" 
+									name="q" 
+									placeholder="Search..." 
+									value="{{ request('q') }}">
+								
+								<button class="header__search-button" type="submit">
 									<i class="ti ti-search"></i>
 								</button>
-								<button class="header__search-close" type="button">
+								
+								<button class="header__search-close" type="button" onclick="window.location.href='{{ url()->current() }}'">
 									<i class="ti ti-x"></i>
 								</button>
 							</form>
+
 
 							<button class="header__search-btn" type="button">
 								<i class="ti ti-search"></i>

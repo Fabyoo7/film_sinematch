@@ -147,12 +147,12 @@
 					<div class="row">
 						<!-- item -->
 						 
-						@foreach($film as $item)
+						@foreach($film->sortByDesc('created_at')->take(18) as $item)
 						<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
 							<div class="item">
 								<div class="item__cover">
 									<img src="{{ asset('images/film/' . $item->poster)}}" alt="">
-									<a href="{{ url('detail', $item -> id ) }}" class="item__play">
+									<a href="{{ Auth::check() ? url('user/detail', $item->id) : url('detail', $item->id) }}" class="item__play">
 										<i class="ti ti-player-play-filled"></i>
 									</a>
 									@php
@@ -173,7 +173,7 @@
 
 								</div>
 								<div class="item__content">
-									<h3 class="item__title"><a href="{{ url('detail', $item -> id ) }}">{{ $item->judul }}</a></h3>
+									<h3 class="item__title"><a href="{{ Auth::check() ? url('user/detail', $item->id) : url('detail', $item->id) }}">{{ $item->judul }}</a></h3>
 									<span class="item__category">
 										<a href="#">{{ $item->kategori->nama_kategori}}</a>
 										<a href="#">{{ $item->genre->nama_genre}}</a>

@@ -66,9 +66,9 @@
 							</ul>
 
 							<div class="contacts__social">
-								<a href="#"><i class="ti ti-brand-facebook"></i></a>
+								<a href="https://www.facebook.com/fabio.naufal.3"><i class="ti ti-brand-facebook"></i></a>
 								<a href="#"><i class="ti ti-brand-x"></i></a>
-								<a href="https://www.instagram.com/volkov_des1gn/" target="_blank"><i class="ti ti-brand-instagram"></i></a>
+								<a href="https://www.instagram.com/fabionfl7/" target="_blank"><i class="ti ti-brand-instagram"></i></a>
 								<a href="#"><i class="ti ti-brand-discord"></i></a>
 								<a href="#"><i class="ti ti-brand-telegram"></i></a>
 								<a href="#"><i class="ti ti-brand-tiktok"></i></a>

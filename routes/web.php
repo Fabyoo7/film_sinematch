@@ -32,8 +32,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
-
-
+// Login/Regis
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register'])->name('register');
@@ -54,23 +53,22 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
     Route::get('/detail/{id}', [FrontController::class, 'show'])->name('detail.show');
 });
 
+// Route Guest
 Route::get('/about', [FrontController::class, 'about'])->name('about');
 Route::get('/catalog', [FrontController::class, 'catalog'])->name('catalog');
 Route::get('/detail/{id}', [FrontController::class, 'show'])->name('detail.show');
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::get('/privacy', [FrontController::class, 'privacy'])->name('privacy');
 
-Route::post('/favorite/{film}', [App\Http\Controllers\FavoriteController::class, 'toggle'])->middleware('auth')->name('favorite.toggle');
-
-
-
+// Tambahan
+Route::post('/favorite/{film}', [FavoriteController::class, 'toggle'])->middleware('auth')->name('favorite.toggle');
+Route::get('/search', [FrontController::class, 'search'])->name('search.film');
 
 // Hanya untuk admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin', [HomeController::class, 'index'])->name('admin.dashboard');    
 });
-
-
+// Backend
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('kategori', KategoriController::class);
     Route::resource('genre', GenreController::class);
