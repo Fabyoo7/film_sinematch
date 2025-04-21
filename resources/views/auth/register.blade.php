@@ -66,11 +66,6 @@
 								<input  id="password-confirm" type="password" class="sign__input" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
 							</div>
 
-							<div class="sign__group sign__group--checkbox">
-								<input id="remember" name="remember" type="checkbox" checked="checked">
-								<label for="remember">I agree to the <a href="#">Privacy Policy</a></label>
-							</div>
-
 							<button class="sign__btn" type="submit">Sign up</button>
 
 							<span class="sign__delimiter">or</span>

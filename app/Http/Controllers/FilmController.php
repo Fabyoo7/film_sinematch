@@ -39,10 +39,13 @@ class FilmController extends Controller
             $data->formatted_tanggal = Carbon::parse($data->tanggal)->translatedFormat('l, d F Y');
         }
 
-        $film = Film::paginate(10);
+        $film = Film::with(['kategori', 'genre'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10); // Atur jumlah per halaman sesuai kebutuhan
+
 
         return view('film.index', compact('film', 'kategori', 'id_kategori', 'genre', 'id_genre' ));
-    }
+    }   
 
     /**
      * Show the form for creating a new resource.

@@ -31,29 +31,28 @@
 								<a href="{{ Auth::check() ? route('user.contact') : route('contact') }}" class="header__nav-link" >Contact</a>
 							</li>
 						</ul>
-						
+
 						<!-- end header nav -->
 
 						<!-- header auth -->
 						<div class="header__auth">
-							<form action="{{ route('search.film') }}" method="GET" class="header__search">
-								<input 
-									class="header__search-input" 
-									type="text" 
-									name="q" 
-									placeholder="Search..." 
+							<form action="{{ route('catalog.search') }}" method="GET" class="header__search">
+								<input
+									class="header__search-input"
+									type="text"
+									name="q"
+									placeholder="Search..."
 									value="{{ request('q') }}">
-								
+
 								<button class="header__search-button" type="submit">
 									<i class="ti ti-search"></i>
 								</button>
-								
+
 								<button class="header__search-close" type="button" onclick="window.location.href='{{ url()->current() }}'">
 									<i class="ti ti-x"></i>
 								</button>
 							</form>
-
-
+							
 							<button class="header__search-btn" type="button">
 								<i class="ti ti-search"></i>
 							</button>

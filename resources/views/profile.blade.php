@@ -90,73 +90,56 @@
 			<div class="tab-content">
 				<!-- Profile Tab -->
 				<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab" tabindex="0">
-					<div class="row">
-						@php
-							// Example placeholder values
-							$stats = [
-								['label' => 'Premium plan', 'value' => '$34.99 / month', 'icon' => 'ti-credit-card'],
-								['label' => 'Films watched', 'value' => '1 678', 'icon' => 'ti-movie'],
-								['label' => 'Your comments', 'value' => '2 573', 'icon' => 'ti-message-circle'],
-								['label' => 'Your reviews', 'value' => '1 021', 'icon' => 'ti-star-half-filled'],
-							];
-						@endphp
-
-						@foreach($stats as $stat)
-						<div class="col-12 col-md-6 col-xl-3">
-							<div class="stats">
-								<span>{{ $stat['label'] }}</span>
-								<p>{{ $stat['value'] }}</p>
-								<i class="ti {{ $stat['icon'] }}"></i>
-							</div>
-						</div>
-						@endforeach
-					</div>
 
 					<div class="row">
 						<!-- Movies for you -->
 						<div class="col-12 col-xl-6">
-							<div class="dashbox">
-								<div class="dashbox__title">
-									<h3><i class="ti ti-movie"></i> Movies for you</h3>
-									<div class="dashbox__wrap">
-										<a class="dashbox__refresh" href="#"><i class="ti ti-refresh"></i></a>
-										<a class="dashbox__more" href="catalog.html">View All</a>
+								<div class="dashbox">
+									<div class="dashbox__title">
+										<h3><i class="ti ti-movie"></i>Film for you</h3>
+									</div>
+
+									<div class="dashbox__table-wrap dashbox__table-wrap--2">
+										<table class="dashbox__table">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th>ITEM</th>
+													<th>GENRE</th>
+													<th>RATING</th>
+												</tr>
+											</thead>
+										@php $no=1; @endphp
+										@foreach ($film->sortByDesc('rating')->take(5) as $data)
+											<tbody>
+												<tr>
+													<td>
+														<div class="dashbox__table-text dashbox__table-text--grey">{{ $no++ }}</div>
+													</td>
+													<td>
+														<div class="dashbox__table-text">{{ Str::limit($data->judul, 25) }}</a></div>
+													</td>
+													<td>
+														<div class="dashbox__table-text">{{ $data->genre->nama_genre }}</div>
+													</td>
+													<td>
+														<div class="dashbox__table-text">{{ $data->rating }}</div>
+													</td>
+												</tr>
+												@endforeach
+											</tbody>				
+										</table>
 									</div>
 								</div>
-								<div class="dashbox__table-wrap dashbox__table-wrap--1">
-									<table class="dashbox__table">
-										<thead>
-											<tr>
-												<th>ID</th>
-												<th>TITLE</th>
-												<th>CATEGORY</th>
-												<th>RATING</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><div class="dashbox__table-text dashbox__table-text--grey">241</div></td>
-												<td><div class="dashbox__table-text"><a href="details.html">The Lost City</a></div></td>
-												<td><div class="dashbox__table-text">Movie</div></td>
-												<td><div class="dashbox__table-text dashbox__table-text--rate"><i class="ti ti-star"></i> 9.2</div></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
 							</div>
-						</div>
-
 						<!-- Latest Reviews -->
 						<div class="col-12 col-xl-6">
 							<div class="dashbox">
 								<div class="dashbox__title">
 									<h3><i class="ti ti-star-half-filled"></i> Latest reviews</h3>
-									<div class="dashbox__wrap">
-										<a class="dashbox__refresh" href="#"><i class="ti ti-refresh"></i></a>
-										<a class="dashbox__more" href="#">View All</a>
-									</div>
 								</div>
-								<div class="dashbox__table-wrap dashbox__table-wrap--2">
+
+								<div class="dashbox__table-wrap dashbox__table-wrap--4">
 									<table class="dashbox__table">
 										<thead>
 											<tr>
@@ -166,18 +149,30 @@
 												<th>RATING</th>
 											</tr>
 										</thead>
+
+										@php $no=1; @endphp
+									@foreach ($review->sortByDesc('created_at')->take(5) as $data)
 										<tbody>
 											<tr>
-												<td><div class="dashbox__table-text dashbox__table-text--grey">824</div></td>
-												<td><div class="dashbox__table-text"><a href="details.html">I Dream in Another Language</a></div></td>
-												<td><div class="dashbox__table-text">Eliza Josceline</div></td>
-												<td><div class="dashbox__table-text dashbox__table-text--rate"><i class="ti ti-star"></i> 7.2</div></td>
+												<td>
+													<div class="dashbox__table-text dashbox__table-text--grey">{{ $no++ }}</div>
+												</td>
+												<td>
+													<div class="dashbox__table-text">{{ $data->film->judul }}</a></div>
+												</td>
+												<td>
+													<div class="dashbox__table-text">{{ $data->user->name }}</div>
+												</td>
+												<td>
+													<div class="dashbox__table-text">{{ $data->rating }}</div>
+												</td>
 											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
+											@endforeach
+								</tbody>				
+							</table>
 						</div>
+					</div>
+				</div>
 					</div>
 				</div>
 

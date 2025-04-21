@@ -5,6 +5,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -62,7 +63,7 @@ Route::get('/privacy', [FrontController::class, 'privacy'])->name('privacy');
 
 // Tambahan
 Route::post('/favorite/{film}', [FavoriteController::class, 'toggle'])->middleware('auth')->name('favorite.toggle');
-Route::get('/search', [FrontController::class, 'search'])->name('search.film');
+Route::get('/search', [FrontController::class, 'search'])->name('catalog.search');
 
 // Hanya untuk admin
 Route::middleware(['auth', 'role:admin'])->group(function () {

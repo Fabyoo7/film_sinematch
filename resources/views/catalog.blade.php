@@ -87,6 +87,15 @@
 							</div>
 						</div>
 					    @endforeach
+							@if ($film->count() > 0)
+						@foreach ($film as $data)
+							<!-- Tampilkan data film -->
+						@endforeach
+					@else
+						<div class="alert alert-warning" style="text-align: center; margin-top: 20px;">
+							Data tidak ditemukan.
+						</div>
+					@endif
 				<!-- end item -->
 		</div>
 	</div>

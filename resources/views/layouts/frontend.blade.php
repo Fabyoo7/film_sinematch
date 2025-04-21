@@ -119,19 +119,7 @@
 						<!-- content tabs nav -->
 						<ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
 							<li class="nav-item" role="presentation">
-								<button id="1-tab" class="active" data-bs-toggle="tab" data-bs-target="#tab-1" type="button" role="tab" aria-controls="tab-1" aria-selected="true">New items</button>
-							</li>
-
-							<li class="nav-item" role="presentation">
-								<button id="2-tab" data-bs-toggle="tab" data-bs-target="#tab-2" type="button" role="tab" aria-controls="tab-2" aria-selected="false">Movies</button>
-							</li>
-
-							<li class="nav-item" role="presentation">
-								<button id="3-tab" data-bs-toggle="tab" data-bs-target="#tab-3" type="button" role="tab" aria-controls="tab-3" aria-selected="false">TV Shows</button>
-							</li>
-
-							<li class="nav-item" role="presentation">
-								<button id="4-tab" data-bs-toggle="tab" data-bs-target="#tab-4" type="button" role="tab" aria-controls="tab-4" aria-selected="false">Anime</button>
+								<button id="1-tab" class="active" data-bs-toggle="tab" data-bs-target="#tab-1" type="button" role="tab" aria-controls="tab-1" aria-selected="true">All ITEMS</button>
 							</li>
 						</ul>
 						<!-- end content tabs nav -->
@@ -190,24 +178,6 @@
 
 					
 						<!-- end item -->
-					</div>
-				</div>
-
-				<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab" tabindex="0">
-					<div class="row">
-
-					</div>
-				</div>
-
-				<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab" tabindex="0">
-					<div class="row">
-						
-					</div>
-				</div>
-
-				<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="4-tab" tabindex="0">
-					<div class="row">
-					
 					</div>
 				</div>
 			</div>

@@ -83,48 +83,47 @@
 								</tr>
 							</thead>
                              @php $no=1; @endphp
-                           @foreach ($film as $index => $data)
-							<tbody>
-								<tr>
-									<td>
-										<div class="catalog__text">{{ $film->firstItem() + $index }}</div>
-									</td>
-									<td>
-										<div class="catalog__text"><a href="#">{{ Str::limit($data->judul, 25) }}</a></div>
-									</td>
-									<td>
-										<div class="catalog__text">{{ $data->kategori->nama_kategori }}</div>
-									</td>
-									<td>
-										<div class="catalog__text">{{ $data->genre->nama_genre }}</div>
-									</td>
-									<td>
-										<div class="catalog__text">{{ $data->aktor }}</div>
-									</td>
-									<td>
-										<div class="catalog__text">{{ $data->tahun_rilis }}</div>
-									</td>
-									<td>
-                                         <form action="{{ route('film.destroy', $data->id) }}"
-                                             method="POST">
-                                             @csrf
-                                             @method('DELETE')
-										<div class="catalog__btns">
-											<a href="{{ route('film.show', $data->id) 	}}" class="catalog__btn catalog__btn--view">
-												<i class="ti ti-eye"></i>
-											</a>
-											<a href="{{ route('film.edit', $data->id) }}" class="catalog__btn catalog__btn--edit">
-												<i class="ti ti-edit"></i>
-											</a>
-											<button type="submit" data-bs-toggle="modal" class="catalog__btn catalog__btn--delete" data-bs-target="#modal-delete">
-												<i class="ti ti-trash"></i>
-											</button>
-										</div>
-									</td>
-                                     </form>
-								</tr>
-								 @endforeach
-							</tbody>
+                           <tbody>
+								@foreach ($film as $index => $data)
+									<tr>
+										<td>
+											<div class="catalog__text">{{ $film->firstItem() + $index }}</div>
+										</td>
+										<td>
+											<div class="catalog__text"><a href="#">{{ Str::limit($data->judul, 25) }}</a></div>
+										</td>
+										<td>
+											<div class="catalog__text">{{ $data->kategori->nama_kategori }}</div>
+										</td>
+										<td>
+											<div class="catalog__text">{{ $data->genre->nama_genre }}</div>
+										</td>
+										<td>
+											<div class="catalog__text">{{ $data->aktor }}</div>
+										</td>
+										<td>
+											<div class="catalog__text">{{ $data->tahun_rilis }}</div>
+										</td>
+										<td>
+											<form action="{{ route('film.destroy', $data->id) }}" method="POST">
+												@csrf
+												@method('DELETE')
+												<div class="catalog__btns">
+													<a href="{{ route('film.show', $data->id) }}" class="catalog__btn catalog__btn--view">
+														<i class="ti ti-eye"></i>
+													</a>
+													<a href="{{ route('film.edit', $data->id) }}" class="catalog__btn catalog__btn--edit">
+														<i class="ti ti-edit"></i>
+													</a>
+													<button type="submit" class="catalog__btn catalog__btn--delete">
+														<i class="ti ti-trash"></i>
+													</button>
+												</div>
+											</form>
+										</td>
+									</tr>
+								@endforeach
+								</tbody>
 						</table>
 					</div>
 				</div>

@@ -48,6 +48,4 @@ class User extends Authenticatable
     return $this->belongsToMany(Film::class, 'favorites')->withTimestamps();
 }
 
-    
-
 }

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -25,8 +26,9 @@ class FrontController extends Controller
 
     public function profile()
     {
-        $film = Film::all();
-        return view('profile', compact('film'));
+        $film   = Film::all();
+        $review = Review::all();
+        return view('profile', compact('film', 'review'));
     }
 
     public function about()
@@ -43,10 +45,9 @@ class FrontController extends Controller
         return view('privacy');
     }
 
-    public function catalog()
+    public function catalog(Request $request)
     {
         $film = Film::orderBy('created_at', 'desc')->get();
-
         return view('catalog', compact('film'));
     }
 
@@ -74,7 +75,7 @@ class FrontController extends Controller
         $query = $request->input('q');
 
         if (empty($query)) {
-            return redirect('/'); // atau ke halaman awal
+            return redirect('catalog'); // atau ke halaman awal
         }
 
         $film = Film::where('judul', 'like', "%$query%")
@@ -86,6 +87,6 @@ class FrontController extends Controller
             })
             ->get();
 
-        return view('layouts.frontend', compact('film', 'query'));
+        return view('catalog', compact('film', 'query'));
     }
 }
