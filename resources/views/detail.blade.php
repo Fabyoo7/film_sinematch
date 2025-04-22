@@ -72,9 +72,9 @@
                                 <div class="item__content">
                                     <ul class="item__meta">
                                         <li><span>Aktor:        <a href="">{{$film->aktor}}</a></span></li>
-                                        <li><span>Kategori:</span> <a href="">{{ $film->kategori->nama_kategori}}</a> </li>
+                                        <li><span>Kategori:</span><a href="">{{ $film->kategori->nama_kategori}}</a> </li>
                                         <li><span>Genre:</span> <a href="">{{ $film->genre->nama_genre}}</a>
-                                        <li><span>Tahun rilis:</span>{{$film->tahun_rilis}}</li>
+                                        <li><span>Tahun rilis:  <span>{{ \Carbon\Carbon::parse($film->tahun_rilis)->locale('id')->translatedFormat('d F Y')}}</span>
                                         <li><span>Waktu:</span>{{$film->waktu}}</li>
                                         <li><span>Sipnosis:</span> <a>{{$film->sipnosis}}</a></li>
                                     </ul>
@@ -140,7 +140,7 @@
                                                 <div class="reviews__autor">
                                                     <img class="reviews__avatar" src="{{ asset('frontend/assets/img/user.svg')}}" alt="">
                                                     <span class="reviews__name">{{ $komentar->user->name }}</span>
-                                                    <span class="reviews__time">{{ $komentar->created_at->format('d.m.Y, H:i') }}</span>
+                                                    <span class="reviews__time">{{ $komentar->created_at->setTimezone('Asia/Jakarta')->format('d.m.Y, H:i') }}</span>
                                                     <span class="reviews__rating reviews__rating--yellow">{{ $komentar->rating }}</span>
                                                 </div>
                                                 <p class="reviews__text">{{ $komentar->komen }}</p>

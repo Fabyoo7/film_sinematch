@@ -69,13 +69,14 @@
 								<tr>
 									<th>ID</th>
 									<th>FILM</th>
-                                    <th>USER</th>
-                                    <th>RATING</th>
-                                    <th>KOMEN</th>
+									<th>USER</th>
+									<th>RATING</th>
+									<th>KOMEN</th>
+									<th>TANGGAL</th> <!-- Kolom tanggal ditambahkan -->
 								</tr>
 							</thead>
-                             @php $no=1; @endphp
-                            @foreach ($review as $data)
+							@php $no=1; @endphp
+							@foreach ($review as $data)
 							<tbody>
 								<tr>
 									<td>
@@ -84,18 +85,23 @@
 									<td>
 										<div class="catalog__text">{{ $data->film->judul }}</div>
 									</td>
-                                    <td>
+									<td>
 										<div class="catalog__text">{{ $data->user->name }}</div>
 									</td>
-                                    <td>
+									<td>
 										<div class="catalog__text">{{ $data->rating }}</div>
 									</td>
-                                    <td>
-                                        <div class="catalog__text">{{ $data->komen }}</div>
 									<td>
+										<div class="catalog__text">{{ $data->komen }}</div>
+									</td>
+									<td>
+										<div class="catalog__text">
+											{{ \Carbon\Carbon::parse($data->created_at)->format('d M Y') }}
+										</div>
+									</td>
 								</tr>
-								 @endforeach
-							</tbody>
+							@endforeach
+
 						</table>
 					</div>
 				</div>
